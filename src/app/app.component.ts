@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  topic: string = 'GIT INTEGRATION FOR ANGULAR PROJECT';
+  topic: string = 'GIT INTEGRATION IN ANGULAR PROJECT';
   viewMode: string = 'home';
 
   constructor(private route: Router, public authService: AuthService) {
