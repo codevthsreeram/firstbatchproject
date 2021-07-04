@@ -1,0 +1,32 @@
+<div style="margin: auto;width: 350px; " class="alert alert-warning text-center" *ngIf="authError">
+    Invalid credentials...
+</div>
+<div class="card" style="margin: auto;width: 350px;">
+    <h5 class="card-header text-center">Login</h5>
+    <div class="card-body">
+        <table style="width: 300px;margin: auto;text-align: center;padding: 5px;">
+            <tr>
+                <td>
+                    <label customStyle>UserName</label>
+                </td>
+                <td>
+                    <input #txtName class="form-control" type="text" placeholder="enter your username">
+                </td>
+            </tr>
+            <tr>
+                <td customStyle>
+                    Password
+                </td>
+                <td>
+                    <input #txtPwd type="text" class="form-control" placeholder="enter your password">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-warning">Forgot?</button>&nbsp;
+                    <button (click)="login(txtName.value,txtPwd.value)" class="btn btn-primary">Login</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

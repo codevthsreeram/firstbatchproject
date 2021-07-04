@@ -1,0 +1,104 @@
+<table style="width: 1000px;margin: auto;">
+    <tr>
+        <td>
+            <!-- Button trigger modal -->
+            <div style="text-align: right;">
+                <button type="button" class="btn btn-primary" (click)="addEmployee()" data-bs-toggle="modal"
+                    data-bs-target="#mpEmployee">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Employee
+                </button>
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Salary
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of lstEmployee;index as a">
+                        <td>
+                            {{employee.name}}
+                        </td>
+                        <td>
+                            {{employee.salary}}
+                        </td>
+
+                        <td>
+                            {{employee.address}}
+                        </td>
+                        <td>
+                            <button class="btn btn-info"><a [routerLink]="['/employee',employee.name,employee.salary]"
+                                    [queryParams]="{address : employee.address,course : 'Angular'}"><i class="fa fa-eye"
+                                        aria-hidden="true"></i></a></button>&nbsp;
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mpEmployee"
+                                (click)="editEmployee(a,employee)"><i class="fa fa-pencil-square-o"
+                                    aria-hidden="true"></i></button>&nbsp;
+                            <button class="btn btn-danger" (click)="deleteEmployee(a)"><i class="fa fa-trash-o"
+                                    aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="mpEmployee" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" *ngIf="action=='create'" id="exampleModalLabel">Add Employee
+                            </h5>
+                            <h5 class="modal-title" *ngIf="action=='update'" id="exampleModalLabel">Edit Employee
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div *ngIf="successMessage" class="alert alert-success" role="alert">
+                                {{successMessage}}
+                            </div>
+                            <div *ngIf="errorMessage" class="alert alert-warning" role="alert">
+                                {{errorMessage}}
+                            </div>
+                            <div class="mb-3" style="text-align: left;">
+                                <label class="form-label" for="txtName">
+                                    Name
+                                </label>
+                                <input [(ngModel)]="employee.name" class="form-control" type="text"
+                                    placeholder="Enter name" id="txtName">
+                            </div>
+                            <div class="mb-3" style="text-align: left;">
+                                <label class="form-label" for="txtSalary">
+                                    Salary
+                                </label>
+                                <input [(ngModel)]="employee.salary" class="form-control" type="number"
+                                    placeholder="Enter salary" id="txtSalary">
+                            </div>
+                            <div class="mb-3" style="text-align: left;">
+                                <label class="form-label" for="txtAddress">
+                                    Address
+                                </label>
+                                <input [(ngModel)]="employee.address" class="form-control" type="text"
+                                    placeholder="Enter address" id="txtAddress">
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: block !important;">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" (click)="manageEmployee()" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

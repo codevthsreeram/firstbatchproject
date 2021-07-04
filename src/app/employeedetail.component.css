@@ -1,0 +1,7 @@
+
+.user-details {position: relative; padding: 0;}
+.user-image {position: relative;  z-index: 1; width: 100%; text-align: center;}
+.img-circle{border-radius:50%;}
+.user-image img { clear: both; margin: auto; position: relative; text-align: center;}
+.user-details .user-info-block {width: 100%; position: absolute; top: 55px; background: rgb(255, 255, 255); z-index: 0; padding-top: 35px;}
+.user-info-block .user-heading {width: 100%; text-align: center; margin: 10px 0 0;}

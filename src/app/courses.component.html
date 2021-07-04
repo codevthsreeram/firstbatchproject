@@ -1,0 +1,30 @@
+<table style="margin: auto;width: 1000px;text-align: center;">
+    <tr>
+        <th>
+            S.No
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Duration
+        </th>
+    </tr>
+    <tr *ngFor="let course of lstCourses;index as a;">
+        <td>
+            {{a+1}}
+        </td>
+        <td>
+            {{course.name}}
+        </td>
+        <td>
+            {{course.description}}
+        </td>
+        <td>
+            {{course.duration}}
+        </td>
+    </tr>
+</table>

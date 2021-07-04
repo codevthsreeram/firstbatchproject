@@ -1,0 +1,133 @@
+<table style="width: 1000px;margin: auto;">
+    <tr>
+        <td>
+            <!-- Button trigger modal -->
+            <div style="text-align: right;margin-bottom:6px;">
+                <button type="button" class="btn btn-primary" (click)="addUser()" data-bs-toggle="modal"
+                    data-bs-target="#mpUser">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add User
+                </button>
+            </div>
+            <!--List-->
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100 ver1 m-b-110">
+                        <div class="table100-head">
+                            <table>
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th class="cell100 column1">#</th>
+                                        <th class="cell100 column2">Name</th>
+                                        <th class="cell100 column3">Email</th>
+                                        <th class="cell100 column4">City</th>
+                                        <th class="cell100 column5">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table100-body js-pscroll">
+                            <table>
+                                <tbody>
+                                    <tr class="row100 body"
+                                        *ngFor="let user of lstUser | paginate: { itemsPerPage: 5, currentPage: p };index as a">
+                                        <td class="cell100 column1">
+                                            {{a + 1}}
+                                        </td>
+                                        <td class="cell100 column2">
+                                            {{user.name}}
+                                        </td>
+                                        <td class="cell100 column3">
+                                            {{user.email}}
+                                        </td>
+                                        <td class="cell100 column4">
+                                            {{user.address.city}}
+                                        </td>
+                                        <td class="cell100 column5">
+                                            <button class="btn btn-success" data-bs-toggle="modal"
+                                                data-bs-target="#mpUser" (click)="editUser(user,a)"><i
+                                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteUser(user.id,a)"><i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="row100 body">
+                                        <td colspan="5" class="cell100 column1">
+                                            <pagination-controls (pageChange)="p = $event" autoHide="true"
+                                                responsive="true"></pagination-controls>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="mpUser" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+                    <div class="modal-content">
+                        <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+                            <div class="modal-header">
+                                <h5 class="modal-title" *ngIf="!formData.id" id="userModalLabel">
+                                    Add User
+                                </h5>
+                                <h5 class="modal-title" *ngIf="formData.id" id="userModalLabel">
+                                    Edit User
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div *ngIf="name.touched&&name.invalid&&name.errors.required"
+                                    class="alert alert-warning" role="alert">
+                                    Please enter name
+                                </div>
+                                <div *ngIf="name.touched&&name.invalid&&name.errors.minlength"
+                                    class="alert alert-warning" role="alert">
+                                    Please enter minimum 5 chars
+                                </div>
+                                <div *ngIf="email.touched&&email.invalid&&email.errors.required"
+                                    class="alert alert-warning" role="alert">
+                                    Please enter email
+                                </div>
+                                <div *ngIf="email.touched&&email.invalid&&email.errors.minlength"
+                                    class="alert alert-warning" role="alert">
+                                    Please enter minimum 5 chars
+                                </div>
+
+                                <div class="mb-3" style="text-align: left;">
+                                    <label class="form-label" for="txtName">
+                                        Name
+                                    </label>
+                                    <input [(ngModel)]="formData.name" formControlName="name" class="form-control"
+                                        type="text" placeholder="Enter name" id="txtName">
+                                </div>
+                                <div class="mb-3" style="text-align: left;">
+                                    <label class="form-label" for="txtEmail">
+                                        Email
+                                    </label>
+                                    <input type="text" [(ngModel)]="formData.email" formControlName="email"
+                                        class="form-control" placeholder="Enter email" id="txtEmail">
+                                </div>
+                                <div class="mb-3" style="text-align: left;">
+                                    <label class="form-label" for="txtCity">
+                                        City
+                                    </label>
+                                    <input type="text" [(ngModel)]="formData.address.city" formControlName="city"
+                                        class="form-control" placeholder="Enter city" id="txtCity">
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display: block !important;">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" [disabled]="userForm.invalid"
+                                    class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

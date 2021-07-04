@@ -1,0 +1,58 @@
+<h2 [textContent]="title | uppercase"></h2>
+<h2>{{title | lowercase}}</h2>
+<h2>{{totalValue | number}}</h2>
+
+<h2>
+    {{releaseDate | date:'shortDate'}}
+</h2>
+<h1>
+    {{textContent | uppercase | summary : 74}}
+</h1>
+<h1>
+    {{totalAmount | currency}}
+</h1>
+<div *ngIf="IsCreate; then create else update"></div>
+
+<ng-template #create>
+    <h1>Create user</h1>
+</ng-template>
+
+<ng-template #update>
+    <h1>Update user</h1>
+</ng-template>
+
+
+<img src="{{imgUrl}}">
+<img [src]="imgUrl">
+<br>
+<button [class.btnColor]="canSave" [disabled]="false">SAVE</button>
+<br><br><br>
+<table style="margin: auto;width: 300px;">
+    <tr>
+        <td style="text-align: center;" [attr.colspan]="colspan">
+            Login
+        </td>
+    </tr>
+    <tr>
+        <td>
+            UserName
+        </td>
+        <td>
+            <input [(ngModel)]="loginData.username" placeholder="enter your username">
+            <input [value]="loginData.username">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Password
+        </td>
+        <td>
+            <input [(ngModel)]="loginData.password" placeholder="enter your password">
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;" colspan="2">
+            <button (click)="validate()">Login</button>
+        </td>
+    </tr>
+</table>

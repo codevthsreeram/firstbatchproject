@@ -1,0 +1,30 @@
+<table style="width: 1000px;margin: auto;">
+    <tr>
+        <td>
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input formControlName="username" type="text" class="form-control" id="username">
+                    <div class="alert alert-warning" *ngIf="username.touched&&username.errors.required">
+                        Username is required
+                    </div>
+                    <div class="alert alert-warning" *ngIf="username.touched&&username.errors.minlength">
+                        Username length should be min 5 chars...
+                    </div>
+                    <div class="alert alert-warning"
+                        *ngIf="username.touched&&!username.errors.minlength&&username.errors.shouldNotContainSpace">
+                        Username should not contain spaces
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input formControlName="password" type="text" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <button (click)="Signup()" [disabled]="!form.valid" class="btn btn-primary">Signup</button>
+                </div>
+
+            </form>
+        </td>
+    </tr>
+</table>
